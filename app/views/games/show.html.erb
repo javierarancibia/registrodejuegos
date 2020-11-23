@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Titulo del juego:</strong>
+  <%= @game.title %>
+</p>
+
+<p>
+  <strong>Descripcion del juego:</strong>
+  <%= @game.desc %>
+</p>
+
+<p>
+  <strong>Fotos:</strong>
+  <% @game.photos.each do |photo| %>
+    <%= image_tag(photo, size: '250x160') %>
+    <%= link_to raw('&#128229;'), rails_blob_path(photo, disposition: 'attachment') %>
+  <% end %>
+</p>
+
+<%= link_to 'Editar', edit_game_path(@game) %> |
+<%= link_to 'Volver', games_path %>

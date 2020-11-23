@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Juegos de Mesa de Juan</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Titulo del Juego</th>
+      <th>Descripcion</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @games.each do |game| %>
+      <tr>
+        <td><%= game.title %></td>
+        <td><%= game.desc %></td>
+
+        <% game.photos.each do |photo| %>
+          <td><%= image_tag photo.variant(resize: '100x100', monochrome: true)  %></td>
+        <% end %>
+
+
+        <td><%= link_to 'Mostrar el juego', game %></td>
+        <td><%= link_to 'Editar el juego', edit_game_path(game) %></td>
+        <td><%= link_to 'Borrar el juego', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nuevo juego', new_game_path %>
